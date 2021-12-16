@@ -19,4 +19,4 @@
 
 **Ссылка на проект**
 
-*https://adelassan.github.io/mesto/
+* https://adelassan.github.io/mesto/
