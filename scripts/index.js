@@ -46,4 +46,5 @@ let popupForm = popup.querySelector('.popup__form');
 // он будет следить за событием “submit” - «отправка»
 saveForm.addEventListener('click', formSubmitHandler);
 saveForm.addEventListener('click',formSubmitHandler);
+saveForm.addEventListener('click', togglePopup);
 formElement.addEventListener('submit', formSubmitHandler);
