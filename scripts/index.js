@@ -6,15 +6,8 @@ function togglePopup() {
     popup.classList.toggle('popup_opened');
 }
 
-function closePopupOnOverlayClick(event) {
-    if (event.target === event.currentTarget) {
-    popup.classList.remove('popup_opened')
-    }
-}
-
 popupEditButton.addEventListener('click', togglePopup);
 popupCloseButton.addEventListener('click', togglePopup);
-popup.addEventListener('click', closePopupOnOverlayClick);
 
 // Находим форму в DOM
 let formElement = document.querySelector('.popup');
