@@ -10,6 +10,8 @@ let profileDescription = document.querySelector('.profile__description');
 
 function openPopup() {
     popup.classList.add('popup_opened');
+    nameInput.value = profileName.textContent;
+    descriptionInput.value = profileDescription.textContent;
 }
 
 function closePopup() {
@@ -21,7 +23,7 @@ function formSubmitHandler(evt) {
 
     profileName.textContent = nameInput.value;
     profileDescription.textContent = descriptionInput.value;
-    popup.classList.remove('popup_opened');
+    popup.addEventListener('submit', closePopup);
 }
 
 popupEditButton.addEventListener('click', openPopup);
