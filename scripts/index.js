@@ -23,7 +23,7 @@ function formSubmitHandler(evt) {
 
     profileName.textContent = nameInput.value;
     profileDescription.textContent = descriptionInput.value;
-    popup.addEventListener('submit', closePopup);
+    closePopup();
 }
 
 popupEditButton.addEventListener('click', openPopup);
