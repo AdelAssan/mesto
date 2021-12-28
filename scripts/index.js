@@ -56,15 +56,27 @@ function formAddSubmit(evt) {
     closePopupAdd();
 }
 
+function deleteCard(ev) {
+    ev.target.closest('.element').remove();
+}
+
+function blackLike(ev) {
+    if (ev.target.classList.contains("element__like")) {
+        ev.target.style.backgroundImage = "url('../../images/Active.svg')";
+    }
+}
+
 function createCard(card) {
     const cardElement = template.cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
     const cardTitle = cardElement.querySelector('.element__text');
+    const deleteButton = cardElement.querySelector('.element__trash');
     const likeButton = cardElement.querySelector('.element__like');
-    //const deleteButton = cardElement.querySelector('');
 
     cardTitle.textContent = card.name;
     cardImage.src = card.link;
+    deleteButton.addEventListener('click',deleteCard);
+    likeButton.addEventListener('click', blackLike);
 
     elements.prepend(cardElement);
 }
