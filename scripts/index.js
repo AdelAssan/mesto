@@ -60,6 +60,8 @@ function createCard(card) {
     const cardElement = template.cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
     const cardTitle = cardElement.querySelector('.element__text');
+    const likeButton = cardElement.querySelector('.element__like');
+    //const deleteButton = cardElement.querySelector('');
 
     cardTitle.textContent = card.name;
     cardImage.src = card.link;
