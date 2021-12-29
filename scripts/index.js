@@ -62,7 +62,7 @@ function deleteCard(ev) {
 
 function blackLike(ev) {
     if (ev.target.classList.contains("element__like")) {
-        ev.target.style.backgroundImage = "url('../../images/Active.svg')";
+        ev.target.style.backgroundImage = "url('../../../images/Active.svg')";
     }
 }
 
