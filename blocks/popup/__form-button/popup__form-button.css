@@ -1,0 +1,9 @@
+.popup__form-button {
+    min-width: 510px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.popup__form-button_image {
+    margin-left: 100%;
+}
