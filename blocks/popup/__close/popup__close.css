@@ -6,9 +6,8 @@
     min-height: 32px;
     background-position: center;
     background-color: initial;
-    align-items: end;
     padding: 0;
-    margin-left: 470px;
+    margin-left: 8px;
     margin-bottom: 8px;
     cursor: pointer;
     transition: 1s ease-in-out;

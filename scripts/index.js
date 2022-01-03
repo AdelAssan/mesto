@@ -6,6 +6,9 @@ const popupAdd = document.querySelector('.popup_add');
 const popupAddButton = document.querySelector('.profile__add-button');
 const popupCloseEditButton = popupEdit.querySelector('.popup__close');
 const popupCloseAddButton = popupAdd.querySelector('.popup__close');
+const popupPhoto = document.querySelector('.popup_photo');
+const popupCloseImage = popupPhoto.querySelector('.popup__close');
+const popupImage = document.querySelector('.popup__image');
 
 let popupEditForm = popupEdit.querySelector('.popup__form');
 let nameInput = popupEditForm.querySelector('#name');
@@ -15,6 +18,8 @@ let profileDescription = document.querySelector('.profile__description');
 let popupAddForm = popupAdd.querySelector('.popup__form');
 let addNameInput = popupAddForm.querySelector('#cardName');
 let addLinkInput = popupAddForm.querySelector('#link');
+let popupCaption = document.querySelector('.popup__caption');
+let popupImageClose = document.querySelector('.popup__form-button')
 
 function openPopup() {
     popupEdit.classList.add('popup_opened');
@@ -62,8 +67,19 @@ function deleteCard(ev) {
 
 function blackLike(ev) {
     if (ev.target.classList.contains("element__like")) {
-        ev.target.style.backgroundImage = "url('../../../images/Active.svg')";
+        ev.target.style.backgroundImage = "url('./images/Active.svg')";
     }
+}
+
+function openImage(ev) {
+    popupPhoto.classList.add('popup_opened');
+    popupImage.src = ev.target.src;
+    popupCaption.textContent = ev.target.alt;
+}
+
+
+function closeImage() {
+    popupPhoto.classList.remove('popup_opened');
 }
 
 function createCard(card) {
@@ -75,8 +91,11 @@ function createCard(card) {
 
     cardTitle.textContent = card.name;
     cardImage.src = card.link;
+    cardImage.alt = card.name;
+
     deleteButton.addEventListener('click',deleteCard);
     likeButton.addEventListener('click', blackLike);
+    cardImage.addEventListener('click', openImage);
 
     elements.prepend(cardElement);
 }
@@ -89,3 +108,4 @@ popupEditForm.addEventListener('submit', formSubmitHandler);
 popupAddButton.addEventListener('click', openPopupAdd);
 popupCloseAddButton.addEventListener('click', closePopupAdd);
 popupAddForm.addEventListener('submit', formAddSubmit);
+popupCloseImage.addEventListener('click', closeImage)
