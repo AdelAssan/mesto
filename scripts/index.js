@@ -19,7 +19,6 @@ let popupAddForm = popupAdd.querySelector('.popup__form');
 let addNameInput = popupAddForm.querySelector('#cardName');
 let addLinkInput = popupAddForm.querySelector('#link');
 let popupCaption = document.querySelector('.popup__caption');
-let popupImageClose = document.querySelector('.popup__form-button')
 
 function openPopup() {
     popupEdit.classList.add('popup_opened');
