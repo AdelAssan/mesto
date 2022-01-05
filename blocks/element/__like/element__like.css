@@ -1,6 +1,7 @@
 .element__like {
     min-height: 19px;
     min-width: 22px;
+    background-image: url('../../../images/Like.svg');
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     background-size: 22px 19px;
