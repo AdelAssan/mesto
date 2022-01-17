@@ -71,9 +71,9 @@ function getCard(item) {
 
       cardImage.addEventListener('click', () => {
         openPopup(popupPhoto)
-        popupImage.src = item.link
-        popupCaption.textContent = item.name
-        popupImage.alt = item.name
+        popupImage.src = item.link;
+        popupCaption.textContent = item.name;
+        popupImage.alt = item.name;
       });
 
     return cardElement;
