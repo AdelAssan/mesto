@@ -12,13 +12,13 @@ const popupImage = document.querySelector('.popup__image');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupAddForm = popupAdd.querySelector('.popup__form');
 
-let nameInput = popupEditForm.querySelector('#name');
-let descriptionInput = popupEditForm.querySelector('#description');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
-let addNameInput = popupAddForm.querySelector('#cardName');
-let addLinkInput = popupAddForm.querySelector('#link');
-let popupCaption = document.querySelector('.popup__caption');
+const nameInput = popupEditForm.querySelector('#name');
+const descriptionInput = popupEditForm.querySelector('#description');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
+const addNameInput = popupAddForm.querySelector('#cardName');
+const addLinkInput = popupAddForm.querySelector('#link');
+const popupCaption = document.querySelector('.popup__caption');
 
 function openPopup(popup){
     popup.classList.add('popup_opened')
@@ -52,13 +52,6 @@ function deleteCard(evt) {
     evt.target.closest('.element').remove();
 }
 
-function openImage(evt) {
-    popupPhoto.classList.add('popup_opened');
-    popupImage.src = evt.target.src;
-    popupCaption.textContent = evt.target.alt;
-    popupImage.alt = evt.target.alt;
-}
-
 function getCard(item) {
     const cardElement = template.cloneNode(true);
     const cardImage = cardElement.querySelector('.element__image');
@@ -71,10 +64,16 @@ function getCard(item) {
     cardImage.alt = item.name;
 
     deleteButton.addEventListener('click',deleteCard);
-    cardImage.addEventListener('click', openImage);
 
       likeButton.addEventListener('click', () => {
         likeButton.classList.toggle('element__like_active')
+      });
+
+      cardImage.addEventListener('click', () => {
+        openPopup(popupPhoto)
+        popupImage.src = item.link
+        popupCaption.textContent = item.name
+        popupImage.alt = item.name
       });
 
     return cardElement;
