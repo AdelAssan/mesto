@@ -40,8 +40,10 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form name="popupForm" action="#" method="get" class="popup__form">
-                <input type="text" value="" name="name" class="popup__input" id="name">
-                <input type="text" value="" name="description" class="popup__input" id="description">
+                <input type="text" value="" name="name" class="popup__input" id="name" minlength="2" maxlength="40">
+                <span id="error-name" class="error"></span>
+                <input type="text" value="" name="description" class="popup__input" id="description" minlength="2" maxlength="200">
+                <span id="error-description" class="error"></span>
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>
         </div>
@@ -52,9 +54,11 @@
             <h2 class="popup__title">Новое место</h2>
             <form name="popupForm" action="#" method="get" class="popup__form">
                 <input required type="text" value="" name="name" class="popup__input" id="cardName"
-                    placeholder="Название">
-                <input required type="text" value="" name="description" class="popup__input" id="link"
+                    placeholder="Название" minlength="2" maxlength="30">
+                <span id="error-cardName" class="error"></span>
+                <input required type="url" value="" name="description" class="popup__input" id="link"
                     placeholder="Ссылка на картинку">
+                <span id="error-link" class="error"></span>
                 <button type="submit" class="popup__save">Создать</button>
             </form>
         </div>
@@ -79,6 +83,6 @@
     </template>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
-
 </html>
