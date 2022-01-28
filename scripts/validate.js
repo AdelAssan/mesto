@@ -6,6 +6,7 @@ const hasInvalidInput = (inputs) => {
 }
 
 const toggleButtonError = (inputs, button, inactiveButtonClass) => {
+    console.log(hasInvalidInput(inputs))
     if (hasInvalidInput(inputs)) {
         button.classList.add(inactiveButtonClass);
         button.disabled = true;
@@ -50,6 +51,7 @@ const setInputListeners = (form, { inputSelector, submitButtonSelector, inactive
     inputs.forEach((input) => {
         input.addEventListener('input', () => {
             validateInput(form, input, rest);
+            toggleButtonError(inputs, submitButton,inactiveButtonClass);
         });
     });
     toggleButtonError(inputs, submitButton,inactiveButtonClass);
@@ -62,7 +64,6 @@ function enableValidation ({formSelector, ...rest}){
         form.addEventListener('submit', (event) => {
             event.preventDefault();
         });
-
         setInputListeners(form, rest);
     });
 }
