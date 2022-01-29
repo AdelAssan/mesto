@@ -6,7 +6,6 @@ const hasInvalidInput = (inputs) => {
 }
 
 const toggleButtonError = (inputs, button, inactiveButtonClass) => {
-    console.log(hasInvalidInput(inputs))
     if (hasInvalidInput(inputs)) {
         button.classList.add(inactiveButtonClass);
         button.disabled = true;
@@ -16,30 +15,35 @@ const toggleButtonError = (inputs, button, inactiveButtonClass) => {
     }
 }
 
-function showError(input, errorContainer, errorText, { inputErrorClass, errorVisibleClass }) {
+const disableButton = (button) => {
+   button.setAttribute('disabled', true);
+   button.classList.add('popup__save_disabled');
+}
+
+function showError(input, errorContainer, errorText, { inputErrorClass, errorClass }) {
     input.classList.add(inputErrorClass);
-    errorContainer.classList.add(errorVisibleClass);
+    errorContainer.classList.add(errorClass);
     errorContainer.textContent = errorText;
 }
 
-function hideError(input, errorContainer, { inputErrorClass, errorVisibleClass }) {
+function hideError(input, errorContainer, { inputErrorClass, errorClass }) {
     input.classList.remove(inputErrorClass);
-    errorContainer.classList.remove(errorVisibleClass);
+    errorContainer.classList.remove(errorClass);
     errorContainer.textContent = '';
 }
 
-function validateInput(form, input, {inputErrorClass, errorSelector, errorVisibleClass}) {
+function validateInput(form, input, {inputErrorClass, errorClass}) {
     const errorContainer = form.querySelector(`#error-${input.id}`);
 
     let isValid = input.validity.valid;
     let errorText = input.validationMessage;
 
     if (isValid) {
-        hideError(input, errorContainer, {inputErrorClass, errorSelector, errorVisibleClass});
+        hideError(input, errorContainer, {inputErrorClass, errorClass});
     } else {
-        showError(input, errorContainer, errorText, {inputErrorClass, errorSelector, errorVisibleClass});
+        showError(input, errorContainer, errorText, {inputErrorClass, errorClass});
         input.classList.add(inputErrorClass);
-        errorContainer.classList.add(errorVisibleClass);
+        errorContainer.classList.add(errorClass);
         errorContainer.textContent = errorText;
     }
 }
@@ -72,7 +76,7 @@ enableValidation({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible',
+    errorClass: 'error_visible',
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'popup__save_disabled'
 });

@@ -12,6 +12,7 @@ const popupImage = document.querySelector('.popup__image');
 const popupEditForm = popupEdit.querySelector('.popup__form');
 const popupAddForm = popupAdd.querySelector('.popup__form');
 const popupAll = document.querySelectorAll('.popup');
+const popupSave = document.querySelector('.popup__save_add');
 
 const nameInput = popupEditForm.querySelector('#name');
 const descriptionInput = popupEditForm.querySelector('#description');
@@ -105,7 +106,10 @@ function createCard(card) {
 
 initialCards.forEach(createCard);
 
-popupAddButton.addEventListener('click', () => openPopup (popupAdd));
+popupAddButton.addEventListener('click', () => {
+    disableButton(popupSave);
+    openPopup (popupAdd);
+});
 popupCloseAddButton.addEventListener('click', () => closePopup (popupAdd));
 popupEditButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;

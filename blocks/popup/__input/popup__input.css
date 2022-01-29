@@ -12,10 +12,6 @@
     overflow: hidden;
 }
 
-.popup__input:last-of-type {
-    margin-top: 28px;
-}
-
 .popup__input.popup__input_type_error {
     border-color: red;
 }
