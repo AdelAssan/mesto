@@ -1,5 +1,3 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
 
 const hasInvalidInput = (inputs) => {
     return Array.from(inputs).some((elem) => !elem.validity.valid);
@@ -20,30 +18,27 @@ const disableButton = (button) => {
    button.classList.add('popup__save_disabled');
 }
 
-function showError(input, errorContainer, errorText, { inputErrorClass, errorClass }) {
+function showError(input, errorContainer, errorText, {inputErrorClass}) {
     input.classList.add(inputErrorClass);
-    errorContainer.classList.add(errorClass);
     errorContainer.textContent = errorText;
 }
 
-function hideError(input, errorContainer, { inputErrorClass, errorClass }) {
+function hideError(input, errorContainer, {inputErrorClass}) {
     input.classList.remove(inputErrorClass);
-    errorContainer.classList.remove(errorClass);
     errorContainer.textContent = '';
 }
 
-function validateInput(form, input, {inputErrorClass, errorClass}) {
+function validateInput(form, input, {inputErrorClass}) {
     const errorContainer = form.querySelector(`#error-${input.id}`);
 
     let isValid = input.validity.valid;
     let errorText = input.validationMessage;
 
     if (isValid) {
-        hideError(input, errorContainer, {inputErrorClass, errorClass});
+        hideError(input, errorContainer, {inputErrorClass});
     } else {
-        showError(input, errorContainer, errorText, {inputErrorClass, errorClass});
+        showError(input, errorContainer, errorText, {inputErrorClass});
         input.classList.add(inputErrorClass);
-        errorContainer.classList.add(errorClass);
         errorContainer.textContent = errorText;
     }
 }
@@ -76,7 +71,6 @@ enableValidation({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'error_visible',
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'popup__save_disabled'
 });
