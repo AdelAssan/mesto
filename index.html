@@ -40,9 +40,9 @@
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form name="popupForm" action="#" method="get" class="popup__form">
-                <input type="text" value="" name="name" class="popup__input" id="name" minlength="2" maxlength="40">
+                <input type="text" value="" name="name" class="popup__input" id="name" minlength="2" maxlength="40" required>
                 <span id="error-name" class="error"></span>
-                <input type="text" value="" name="description" class="popup__input" id="description" minlength="2" maxlength="200">
+                <input type="text" value="" name="description" class="popup__input" id="description" minlength="2" maxlength="200" required>
                 <span id="error-description" class="error"></span>
                 <button type="submit" class="popup__save">Сохранить</button>
             </form>

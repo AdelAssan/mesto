@@ -1,3 +1,5 @@
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
 
 const hasInvalidInput = (inputs) => {
     return Array.from(inputs).some((elem) => !elem.validity.valid);
@@ -18,12 +20,12 @@ const disableButton = (button) => {
    button.classList.add('popup__save_disabled');
 }
 
-function showError(input, errorContainer, errorText, {inputErrorClass}) {
+function showError(input, errorContainer, errorText, { inputErrorClass }) {
     input.classList.add(inputErrorClass);
     errorContainer.textContent = errorText;
 }
 
-function hideError(input, errorContainer, {inputErrorClass}) {
+function hideError(input, errorContainer, { inputErrorClass }) {
     input.classList.remove(inputErrorClass);
     errorContainer.textContent = '';
 }
@@ -53,7 +55,6 @@ const setInputListeners = (form, { inputSelector, submitButtonSelector, inactive
             toggleButtonError(inputs, submitButton,inactiveButtonClass);
         });
     });
-    toggleButtonError(inputs, submitButton,inactiveButtonClass);
 }
 
 function enableValidation ({formSelector, ...rest}){
