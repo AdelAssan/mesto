@@ -1,28 +1,19 @@
-const popupEditButton = document.querySelector('.profile__edit-button');
-const popupEdit = document.querySelector('.popup_edit');
-const popupAdd = document.querySelector('.popup_add');
-const popupAddButton = document.querySelector('.profile__add-button');
-const popupCloseEditButton = popupEdit.querySelector('.popup__close');
-const popupCloseAddButton = popupAdd.querySelector('.popup__close');
-const elements = document.querySelector('.elements');
-const template = document.querySelector('.template').content;
-const popupPhoto = document.querySelector('.popup_photo');
-const popupCloseImage = popupPhoto.querySelector('.popup__close');
-const popupImage = document.querySelector('.popup__image');
-const popupEditForm = popupEdit.querySelector('.popup__form');
-const popupAddForm = popupAdd.querySelector('.popup__form');
-const popupAll = document.querySelectorAll('.popup');
-const popupSave = document.querySelector('.popup__save_add');
+import {FormValidator} from "./FormValidator.js";
+import {Card} from "./Card.js";
+import {initialCards, config, popupAddForm, popupEditForm, popupSave,
+nameInput, descriptionInput, popupAll, profileName, profileDescription,
+popupEdit, popupAdd, addNameInput, addLinkInput, template, elements,
+popupCloseAddButton, popupAddButton,popupEditButton, popupCloseImage,
+popupCloseEditButton, popupPhoto} from "./constants.js";
 
-const nameInput = popupEditForm.querySelector('#name');
-const descriptionInput = popupEditForm.querySelector('#description');
-const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');
-const addNameInput = popupAddForm.querySelector('#cardName');
-const addLinkInput = popupAddForm.querySelector('#link');
-const popupCaption = document.querySelector('.popup__caption');
+const editFormValidator = new FormValidator(config, popupEditForm);
+const addFormValidator = new FormValidator(config, popupAddForm);
 
-function openPopup(popup){
+editFormValidator.enableValidation();
+addFormValidator.disableButton(popupSave);
+addFormValidator.enableValidation();
+
+export function openPopup(popup){
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc);
 }
@@ -62,52 +53,23 @@ function handlerAddForm(evt) {
         name: addNameInput.value,
         link: addLinkInput.value
     }
-    createCard(obj);
+    renderCard(obj);
     closePopup(popupAdd);
     popupAddForm.reset();
 }
 
-function deleteCard(evt) {
-    evt.target.closest('.element').remove();
-}
+const renderCard = (data) => {
+    const card = new Card(data, template)
+    const cardItem = card.createCard()
 
-function toggleLike(evt) {
-    evt.target.classList.toggle('element__like_active')
-}
+    elements.prepend(cardItem);
+};
 
-function getCard(item) {
-    const cardElement = template.cloneNode(true);
-    const cardImage = cardElement.querySelector('.element__image');
-    const cardTitle = cardElement.querySelector('.element__text');
-    const deleteButton = cardElement.querySelector('.element__trash');
-    const likeButton = cardElement.querySelector('.element__like');
-
-    cardTitle.textContent = item.name;
-    cardImage.src = item.link;
-    cardImage.alt = item.name;
-
-    deleteButton.addEventListener('click',deleteCard);
-    likeButton.addEventListener('click', toggleLike);
-
-    cardImage.addEventListener('click', () => {
-        popupImage.src = item.link;
-        popupCaption.textContent = item.name;
-        popupImage.alt = item.name;
-        openPopup(popupPhoto)
-    });
-
-    return cardElement;
-}
-
-function createCard(card) {
-    const cardElement = getCard(card)
-    elements.prepend(cardElement);
-}
-
-initialCards.forEach(createCard);
+initialCards.forEach((data) => {
+    renderCard(data, elements);
+})
 
 popupAddButton.addEventListener('click', () => {
-    disableButton(popupSave);
     openPopup (popupAdd);
 });
 popupCloseAddButton.addEventListener('click', () => closePopup (popupAdd));
@@ -123,3 +85,4 @@ popupCloseImage.addEventListener('click', () => {
 
 popupEditForm.addEventListener('submit', handlerEditForm);
 popupAddForm.addEventListener('submit', handlerAddForm);
+
