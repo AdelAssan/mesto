@@ -1,6 +1,6 @@
 import {FormValidator} from "./FormValidator.js";
 import {Card} from "./Card.js";
-import {initialCards, config, popupAddForm, popupEditForm, popupSave,
+import {initialCards, config, popupAddForm, popupEditForm,
 nameInput, descriptionInput, popupAll, profileName, profileDescription,
 popupEdit, popupAdd, addNameInput, addLinkInput, template, elements,
 popupCloseAddButton, popupAddButton,popupEditButton, popupCloseImage,
@@ -10,7 +10,6 @@ const editFormValidator = new FormValidator(config, popupEditForm);
 const addFormValidator = new FormValidator(config, popupAddForm);
 
 editFormValidator.enableValidation();
-addFormValidator.disableButton(popupSave);
 addFormValidator.enableValidation();
 
 export function openPopup(popup){
@@ -58,10 +57,17 @@ function handlerAddForm(evt) {
     popupAddForm.reset();
 }
 
-const renderCard = (data) => {
-    const card = new Card(data, template)
-    const cardItem = card.createCard()
 
+function createCardElement(item) {
+    const card = new Card(item, '.template');
+    const cardElement = card.createCard()
+    return cardElement
+}
+
+
+const renderCard = (cardEl) => {
+
+    const cardItem = createCardElement(cardEl)
     elements.prepend(cardItem);
 };
 
@@ -70,6 +76,7 @@ initialCards.forEach((data) => {
 })
 
 popupAddButton.addEventListener('click', () => {
+    addFormValidator.disableButton();
     openPopup (popupAdd);
 });
 popupCloseAddButton.addEventListener('click', () => closePopup (popupAdd));

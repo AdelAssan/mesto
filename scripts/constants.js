@@ -49,7 +49,6 @@ export const popupCloseImage = popupPhoto.querySelector('.popup__close');
 export const popupEditForm = popupEdit.querySelector('.popup__form');
 export const popupAddForm = popupAdd.querySelector('.popup__form');
 export const popupAll = document.querySelectorAll('.popup');
-export const popupSave = document.querySelector('.popup__save_add');
 export const nameInput = popupEditForm.querySelector('#name');
 export const descriptionInput = popupEditForm.querySelector('#description');
 export const profileName = document.querySelector('.profile__name');

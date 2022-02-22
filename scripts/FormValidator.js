@@ -14,8 +14,7 @@ export class FormValidator {
 
     _toggleButtonError = () => {
         if (this._hasInvalidInput()) {
-            this._submitButton.classList.add(this._settings.inactiveButtonClass);
-            this._submitButton.disabled = true;
+            this.disableButton();
         } else {
             this._submitButton.classList.remove(this._settings.inactiveButtonClass);
             this._submitButton.disabled = false;
@@ -23,8 +22,8 @@ export class FormValidator {
     }
 
     disableButton = () => {
-        this._submitButton.setAttribute('disabled', true);
-        this._submitButton.classList.add('popup__save_disabled');
+        this._submitButton.classList.add(this._settings.inactiveButtonClass);
+        this._submitButton.disabled = true;
     }
 
     _showError(input, errorContainer, errorText) {
@@ -39,15 +38,13 @@ export class FormValidator {
 
     _validateInput = (input) => {
         const errorContainer = this._form.querySelector(`#error-${input.id}`);
-        let isValid = input.validity.valid;
-        let errorText = input.validationMessage;
+        const isValid = input.validity.valid;
+        const errorText = input.validationMessage;
 
         if (isValid) {
             this._hideError(input, errorContainer);
         } else {
             this._showError(input, errorContainer, errorText);
-            input.classList.add(this._settings.inputErrorClass);
-            errorContainer.textContent = errorText;
         }
     }
 

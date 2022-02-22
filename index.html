@@ -36,10 +36,10 @@
         </footer>
     </div>
     <div class="popup popup_edit">
-        <form name="closeForm" class="popup__form-button"><button type="button" class="popup__close"></button></form>
+        <div class="popup__close-button"><button type="button" class="popup__close"></button></div>
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="popupForm" action="#" method="get" class="popup__form">
+            <form name="popupEditForm" class="popup__form">
                 <input type="text" value="" name="name" class="popup__input" id="name" minlength="2" maxlength="40" required>
                 <span id="error-name" class="error"></span>
                 <input type="text" value="" name="description" class="popup__input" id="description" minlength="2" maxlength="200" required>
@@ -49,24 +49,24 @@
         </div>
     </div>
     <div class="popup popup_add">
-        <form name="closeForm" class="popup__form-button"><button type="button" class="popup__close"></button></form>
+        <div class="popup__close-button"><button type="button" class="popup__close"></button></div>
         <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
-            <form name="popupForm" action="#" method="get" class="popup__form">
+            <form name="popupAddForm" class="popup__form">
                 <input required type="text" value="" name="name" class="popup__input" id="cardName"
                     placeholder="Название" minlength="2" maxlength="30">
                 <span id="error-cardName" class="error"></span>
                 <input required type="url" value="" name="description" class="popup__input" id="link"
                     placeholder="Ссылка на картинку">
                 <span id="error-link" class="error"></span>
-                <button type="submit" class="popup__save popup__save_add">Создать</button>
+                <button type="submit" class="popup__save">Создать</button>
             </form>
         </div>
     </div>
     <div class="popup popup_photo">
         <figure class="popup__figure">
-            <form name="closeImageForm" class="popup__image-button"><button type="button" class="popup__close"></button>
-            </form>
+            <div class="popup__image-button"><button type="button" class="popup__close"></button>
+            </div>
             <img class="popup__image" alt="" src="//:0">
             <figcaption class="popup__caption"></figcaption>
         </figure>

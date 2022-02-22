@@ -2,13 +2,13 @@ import {openPopup} from "./index.js";
 import {popupCaption, popupImage, popupPhoto} from "./constants.js"
 
 export class Card {
-    constructor(data) {
+    constructor(data, cardSelector) {
         this._data = data;
-        this._template = document.querySelector('.template').content;
+        this._cardSelector = cardSelector;
     }
 
     _getTemplate() {
-        return this._template.cloneNode(true);
+        return document.querySelector(this._cardSelector).content.cloneNode(true);
     }
 
     createCard() {
@@ -29,8 +29,10 @@ export class Card {
     popupImage.src = this._data.link;
     popupCaption.textContent = this._data.name;
     popupImage.alt = this._data.name;
+
     openPopup(popupPhoto);
 }
+
     _deleteCard = (evt) => {
         evt.target.closest('.element').remove();
     }
