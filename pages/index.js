@@ -1,30 +1,21 @@
 import FormValidator from "../scripts/FormValidator.js";
 import Card from "../scripts/Card.js";
-import Section from "../components/Section.js";
-import UserInfo from "../components/UserInfo.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../scripts/Section.js";
+import UserInfo from "../scripts/UserInfo.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
 import {
-    addLinkInput,
-    addNameInput,
     config,
     descriptionInput,
-    elements, popupCloseImage,
     elementsSelector,
-    popupCloseAddButton,
-    popupCloseEditButton,
     initialCards,
     nameInput,
     popupAdd,
     popupAddButton,
     popupAddForm,
-    popupAll,
     popupEdit,
     popupEditButton,
     popupEditForm,
-    popupPhoto,
-    profileDescription,
-    profileName
 } from "../scripts/constants.js";
 
 const editFormValidator = new FormValidator(config, popupEditForm);

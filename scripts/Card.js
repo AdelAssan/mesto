@@ -1,5 +1,5 @@
 
-import {popupCaption, popupImage, popupPhoto} from "./constants.js"
+import {popupCaption, popupImage} from "./constants.js"
 
 export default class Card {
     constructor(data, cardSelector, handleCardClick) {
