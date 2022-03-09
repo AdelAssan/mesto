@@ -1,14 +1,17 @@
-import {openPopup} from "./index.js";
+
 import {popupCaption, popupImage, popupPhoto} from "./constants.js"
 
-export class Card {
-    constructor(data, cardSelector) {
+export default class Card {
+    constructor(data, cardSelector, handleCardClick) {
         this._data = data;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
-        return document.querySelector(this._cardSelector).content.cloneNode(true);
+        const CardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
+        console.log(CardElement)
+        return CardElement
     }
 
     createCard() {
@@ -30,7 +33,7 @@ export class Card {
     popupCaption.textContent = this._data.name;
     popupImage.alt = this._data.name;
 
-    openPopup(popupPhoto);
+    this._handleCardClick(this._data.name, this._data.link);
 }
 
     _deleteCard = (evt) => {

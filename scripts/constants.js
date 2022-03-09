@@ -44,6 +44,7 @@ export const popupAddButton = document.querySelector('.profile__add-button');
 export const popupCloseEditButton = popupEdit.querySelector('.popup__close');
 export const popupCloseAddButton = popupAdd.querySelector('.popup__close');
 export const elements = document.querySelector('.elements');
+export const elementsSelector ='.elements';
 export const template = document.querySelector('.template').content;
 export const popupCloseImage = popupPhoto.querySelector('.popup__close');
 export const popupEditForm = popupEdit.querySelector('.popup__form');
