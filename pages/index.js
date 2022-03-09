@@ -81,10 +81,10 @@ popupEditButton.addEventListener('click', () => {
     PopupWithEditForm.openPopup()
 });
 
-const PopupWithAddForm = new PopupWithForm(popupAdd,({addNameInput, addLinkInput}) => {
+const PopupWithAddForm = new PopupWithForm(popupAdd,({name, description}) => {
     const data = {
-        name: addNameInput,
-        link: addLinkInput
+        name: name,
+        link: description
     }
 
     CardList.addItem(renderCard(data));
