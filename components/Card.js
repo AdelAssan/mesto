@@ -1,6 +1,3 @@
-
-import {popupCaption, popupImage} from "./constants.js"
-
 export default class Card {
     constructor(data, cardSelector, handleCardClick) {
         this._data = data;
@@ -9,9 +6,9 @@ export default class Card {
     }
 
     _getTemplate() {
-        const CardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
-        console.log(CardElement)
-        return CardElement
+        const cardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
+        console.log(cardElement)
+        return cardElement
     }
 
     createCard() {
@@ -29,10 +26,6 @@ export default class Card {
     }
 
     _handlePicture = () => {
-    popupImage.src = this._data.link;
-    popupCaption.textContent = this._data.name;
-    popupImage.alt = this._data.name;
-
     this._handleCardClick(this._data.name, this._data.link);
 }
 

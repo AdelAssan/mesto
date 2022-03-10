@@ -26,12 +26,22 @@ export default class FormValidator {
         this._submitButton.disabled = true;
     }
 
+    resetValidation() {
+        this._toggleButtonError();
+
+        this._inputs.forEach((input) => {
+            this._hideError(input)
+        });
+
+    }
+
     _showError(input, errorContainer, errorText) {
         input.classList.add(this._settings.inputErrorClass);
         errorContainer.textContent = errorText;
     }
 
-    _hideError(input, errorContainer) {
+    _hideError(input) {
+        const errorContainer = this._form.querySelector(`#error-${input.id}`);
         input.classList.remove(this._settings.inputErrorClass);
         errorContainer.textContent = '';
     }

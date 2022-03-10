@@ -3,11 +3,11 @@ export default class Section {
         this._renderedItems = items;
         this._renderer = renderer;
 
-        this._cardSelector = document.querySelector(cardSelector);
+        this._cards = document.querySelector(cardSelector);
     }
 
     addItem(item) {
-        this._cardSelector.prepend(item);
+        this._cards.prepend(item);
     }
 
     renderItems() {
