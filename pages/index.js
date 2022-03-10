@@ -4,18 +4,11 @@ import Section from "../scripts/Section.js";
 import UserInfo from "../scripts/UserInfo.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
+import "./index.css";
 import {
-    config,
-    descriptionInput,
-    elementsSelector,
-    initialCards,
-    nameInput,
-    popupAdd,
-    popupAddButton,
-    popupAddForm,
-    popupEdit,
-    popupEditButton,
-    popupEditForm,
+    config, descriptionInput, elementsSelector,
+    initialCards, nameInput, popupAdd, popupAddButton,
+    popupAddForm, popupEdit, popupEditButton, popupEditForm,
 } from "../scripts/constants.js";
 
 const editFormValidator = new FormValidator(config, popupEditForm);
@@ -23,13 +16,6 @@ const addFormValidator = new FormValidator(config, popupAddForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
-
-
-//popupEditForm.addEventListener('submit', handlerEditForm);
-//popupAddForm.addEventListener('submit', handlerAddForm);
-
-
-
 
 const openImagePopup = new PopupWithImage(document.querySelector('.popup_photo'));
 
