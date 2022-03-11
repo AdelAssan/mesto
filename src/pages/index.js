@@ -9,7 +9,7 @@ import {
     config, descriptionInput, elementsSelector,
     initialCards, nameInput, popupAdd, popupAddButton,
     popupAddForm, popupEdit, popupEditButton, popupEditForm,
-} from "../components/constants.js";
+} from "../utils/constants.js";
 
 const editFormValidator = new FormValidator(config, popupEditForm);
 const addFormValidator = new FormValidator(config, popupAddForm);

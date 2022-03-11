@@ -33,8 +33,6 @@ export const config = {
     inactiveButtonClass: 'popup__save_disabled'
 }
 
-export const popupCaption = document.querySelector('.popup__caption');
-export const popupImage = document.querySelector('.popup__image');
 export const popupEditButton = document.querySelector('.profile__edit-button');
 export const popupEdit = document.querySelector('.popup_edit');
 export const popupAdd = document.querySelector('.popup_add');
