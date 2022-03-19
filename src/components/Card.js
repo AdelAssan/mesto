@@ -13,23 +13,8 @@ export default class Card {
     }
 
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
+        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
         return cardElement
-    }
-
-    wasLiked() {
-        const myLike= this._likes.find(user => user._id === this._userId);
-        return myLike
-    }
-
-    setLikes(newLikes) {
-        this._likes = newLikes;
-        const likeCount = this._element.querySelector('.element__like-count')
-        likeCount.textContent = this._likes.length;
-
-        if (this.wasLiked()) {
-            this._toggleLike()
-        }
     }
 
     createCard() {
@@ -54,14 +39,29 @@ export default class Card {
     _handlePicture = () => {
     this._handleCardClick(this._data.name, this._data.link);
 }
+
+    wasLiked() {
+        const myLike= this._likes.find(user => user._id === this._userId);
+        return myLike
+    }
+
+    setLikes(newLikes) {
+        this._likes = newLikes;
+        const likeCount = this._element.querySelector('.element__like-count')
+        likeCount.textContent = this._likes.length;
+
+        if (this.wasLiked()) {
+            this._toggleLike()
+        }
+    }
+
     _toggleLike = () => {
         this._element.querySelector('.element__like').
         classList.toggle('element__like_active');
     }
 
-    deleteCard = () => {
+    deleteCardElement = () => {
         this._element.remove();
-        this._element = null;
     }
 
     _getCard() {

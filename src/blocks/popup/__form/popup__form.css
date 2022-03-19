@@ -4,9 +4,3 @@
     margin: 13px auto 0;
     font-family: 'Inter', Arial, sans-serif;
 }
-
-@media screen and (max-width: 540px) {
-    .popup__form {
-        margin-top: 75px;
-    }
-}

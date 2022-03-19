@@ -9,7 +9,7 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
     getInitialCards() {
@@ -17,7 +17,7 @@ class Api {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
     editProfile(name, about) {
@@ -30,7 +30,7 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
     addCard(name, link) {
@@ -43,34 +43,34 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
-    deleteCard(id) {
-        return fetch(`${this._baseUrl}/cards/${id}`, {
+    deleteCard(_id) {
+        return fetch(`${this._baseUrl}/cards/${_id}`, {
             method: "DELETE",
             headers: this._headers,
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
-    deleteLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    deleteLike(_id) {
+        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
             method: "DELETE",
             headers: this._headers,
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
-    addLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+    addLike(_id) {
+        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
             method: "PUT",
             headers: this._headers,
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 
     changeAvatar(avatar) {
@@ -82,7 +82,7 @@ class Api {
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
-            .catch((err) => { console.log(err)})
+            .catch(console.log)
     }
 }
 

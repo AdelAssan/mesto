@@ -20,7 +20,15 @@ export default class PopupWithForm extends Popup {
     }
 
     changeSubmit(newSubmit) {
-        this._submitForm = newSubmit
+        this._submitForm = newSubmit;
+    }
+
+    renderLoading(isLoading) {
+        if(isLoading) {
+            document.querySelector('.popup__save').textContent = "Сохранение...";
+        } else {
+            document.querySelector('.popup__save').textContent = document.querySelector('.popup__save').value;
+        }
     }
 
     setEventListeners() {
