@@ -15,27 +15,26 @@ import {
 //Api
 let userId
 
-api.getProfile()
-    .then(res => {
-        userInfo.setUserInfo(res);
-        userId = res._id;
-        console.log(userId)
+Promise.all([api.getProfile(),api.getInitialCards()])
+    .then(([userData, cardsData]) => {
+            userId = userData._id;
+            userInfo.setUserInfo(userData);
+
+            cardsData.forEach(data => {
+                const cardE = createCardElement({
+                    name: data.name,
+                    link: data.link,
+                    likes: data.likes,
+                    id: data._id,
+                    userId: userId,
+                    ownerId: data.owner._id
+                })
+                cardList.getItem(cardE)
+            })
+
     })
 
-api.getInitialCards()
-    .then(items => {
-        items.forEach(data => {
-            const cardE = createCardElement({
-                name: data.name,
-                link: data.link,
-                likes: data.likes,
-                id: data._id,
-                userId: userId,
-                ownerId: data.owner._id
-            })
-            cardList.getItem(cardE)
-        })
-    })
+
 
 //popupAdd
 const addFormValidator = new FormValidator(config, popupAddForm);
@@ -49,6 +48,7 @@ function createCardElement(item) {
             api.deleteCard(id)
                 .then(res => {
                     card.deleteCardElement()
+                    popupDeleteCard.closePopup();
                 }).finally(() => {
                 popupDeleteCard.renderLoading(false);
             })
@@ -163,7 +163,7 @@ const popupEditAvatar = new PopupWithForm(popupAvatar, (data) => {
     });
 });
 
-document.querySelector('.profile__photo').addEventListener('click', () => {
+document.querySelector('.profile__photo-button').addEventListener('click', () => {
     avatarFormValidator.resetValidation();
     popupEditAvatar.openPopup();
 });
