@@ -151,11 +151,10 @@ const avatarFormValidator = new FormValidator(config, popupAvatarForm);
 avatarFormValidator.enableValidation();
 
 const popupEditAvatar = new PopupWithForm(popupAvatar, (data) => {
-    const {avatar} = data;
     popupEditAvatar.renderLoading(true);
+    const {avatar} = data;
     api.changeAvatar(avatar)
         .then(res => {
-            console.log(res)
             userInfo.setUserInfo(res);
             popupEditAvatar.closePopup();
         }).finally(() => {
