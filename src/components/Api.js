@@ -64,8 +64,8 @@ class Api {
             .catch(console.log)
     }
 
-    addLike(_id) {
-        return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
+    addLike(id) {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: "PUT",
             headers: this._headers,
         })

@@ -17,7 +17,7 @@ let userId
 
 api.getProfile()
     .then(res => {
-        userInfo.setUserInfo(res.name, res.about, res.avatar);
+        userInfo.setUserInfo(res);
         userId = res._id;
         console.log(userId)
     })
@@ -45,20 +45,23 @@ function createCardElement(item) {
     const card = new Card(item, '.template', handleCardClick, (id) => {
         popupDeleteCard.openPopup();
         popupDeleteCard.changeSubmit(() => {
+            popupDeleteCard.renderLoading(true);
             api.deleteCard(id)
                 .then(res => {
                     card.deleteCardElement()
-                })
+                }).finally(() => {
+                popupDeleteCard.renderLoading(false);
+            })
         })
     },
-        (_id) => {
+        (id) => {
         if(card.wasLiked()) {
-            api.deleteLike(_id)
+            api.deleteLike(id)
                 .then(res => {
                     card.setLikes(res.likes);
                 });
         } else {
-            api.addLike(_id)
+            api.addLike(id)
                 .then(res => {
                     card.setLikes(res.likes);
                 })
@@ -85,6 +88,7 @@ const popupWithAddForm = new PopupWithForm(popupAdd,(data) => {
                 ownerId: res.owner._id
             })
             cardList.addItem(createCardElement(card));
+            popupWithAddForm.closePopup();
         }).finally(() => {
         popupWithAddForm.renderLoading(false);
     })
@@ -109,8 +113,9 @@ const popupWithEditForm = new PopupWithForm(popupEdit, (data) => {
     const {name, description} = data;
     popupWithEditForm.renderLoading(true);
     api.editProfile(name, description)
-        .then(() => {
-            userInfo.setUserInfo(name, description);
+        .then(res => {
+            userInfo.setUserInfo(res);
+            popupWithEditForm.closePopup();
         }).finally(() => {
         popupWithEditForm.renderLoading(false);
     });
@@ -149,9 +154,10 @@ const popupEditAvatar = new PopupWithForm(popupAvatar, (data) => {
     const {avatar} = data;
     popupEditAvatar.renderLoading(true);
     api.changeAvatar(avatar)
-        .then((res) => {
+        .then(res => {
             console.log(res)
             userInfo.setUserInfo(res);
+            popupEditAvatar.closePopup();
         }).finally(() => {
         popupEditAvatar.renderLoading(false);
     });
