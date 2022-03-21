@@ -6,17 +6,17 @@ export default class Section {
         this._cards = document.querySelector(cardSelector);
     }
 
+    renderItems() {
+        this._renderedItems.forEach(data => {
+            this._renderer(data);
+        });
+    }
+
     addItem(item) {
         this._cards.prepend(item);
     }
 
     getItem(item) {
         this._cards.append(item);
-    }
-
-    renderItems() {
-        this._renderedItems.forEach(item => {
-            this.addItem(this._renderer(item));
-        });
     }
 }
