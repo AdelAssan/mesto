@@ -6,8 +6,8 @@ export default class Section {
         this._cards = document.querySelector(cardSelector);
     }
 
-    renderItems(renderInf) {
-        this._renderedItems = renderInf;
+    renderItems(data) {
+        this._renderedItems = data;
         this._renderedItems.forEach(item => {
         this._renderer(item);
        });
