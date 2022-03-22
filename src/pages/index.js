@@ -15,27 +15,29 @@ import {
 //Api
 let userId
 
-Promise.all([api.getProfile(),api.getInitialCards()])
+Promise.all([api.getProfile(), api.getInitialCards()])
     .then(([userData, cardsData]) => {
         userId = userData._id;
         userInfo.setUserInfo(userData);
 
-        const cardListDefault = new Section({items: cardsData, renderer: (data) => {
-            cardListDefault.getItem(createCardElement({
-                    name: data.name,
-                    link: data.link,
-                    likes: data.likes,
-                    id: data._id,
-                    userId: userId,
-                    ownerId: data.owner._id
-                }))}}, elementsSelector);
-
-        console.log(cardListDefault)
-        console.log(cardsData)
-        cardListDefault.renderItems()
+        console.log(cardList)
+        cardList.renderItems(cardsData);
     }).catch((err) => {
     console.log(err);
 })
+
+const cardList = new Section({
+    items: [], renderer: (data) => {
+        cardList.getItem(createCardElement({
+            name: data.name,
+            link: data.link,
+            likes: data.likes,
+            id: data._id,
+            userId: userId,
+            ownerId: data.owner._id
+        }))
+    }
+}, elementsSelector);
 
 //popupAdd
 const addFormValidator = new FormValidator(config, popupAddForm);
@@ -43,44 +45,43 @@ addFormValidator.enableValidation();
 
 function createCardElement(item) {
     const card = new Card(item, '.template', handleCardClick, (id) => {
-        popupDeleteCard.openPopup();
-        popupDeleteCard.changeSubmit(() => {
-            popupDeleteCard.renderLoading(true);
-            api.deleteCard(id)
-                .then(res => {
-                    card.deleteCardElement()
-                    popupDeleteCard.closePopup();
-                }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                popupDeleteCard.renderLoading(false);
+            popupDeleteCard.openPopup();
+            popupDeleteCard.changeSubmit(() => {
+                popupDeleteCard.renderLoading(true);
+                api.deleteCard(id)
+                    .then(res => {
+                        card.deleteCardElement()
+                        popupDeleteCard.closePopup();
+                    }).catch((err) => {
+                    console.log(err);
+                }).finally(() => {
+                    popupDeleteCard.renderLoading(false);
+                })
             })
-        })
-    },
+        },
         (id) => {
-        if(card.wasLiked()) {
-            api.deleteLike(id)
-                .then(res => {
-                    card.setLikes(res.likes);
-                }).catch((err) => {
-                console.log(err);
-            });
-        } else {
-            api.addLike(id)
-                .then(res => {
-                    card.setLikes(res.likes);
-                }).catch((err) => {
-                console.log(err);
-            })
-        }
+            if (card.wasLiked()) {
+                api.deleteLike(id)
+                    .then(res => {
+                        card.setLikes(res.likes);
+                    }).catch((err) => {
+                    console.log(err);
+                });
+            } else {
+                api.addLike(id)
+                    .then(res => {
+                        card.setLikes(res.likes);
+                    }).catch((err) => {
+                    console.log(err);
+                })
+            }
         })
     const cardElement = card.createCard()
     return cardElement
 }
 
-const cardList = new Section({items: [], renderer: createCardElement}, elementsSelector);
 
-const popupWithAddForm = new PopupWithForm(popupAdd,(data) => {
+const popupWithAddForm = new PopupWithForm(popupAdd, (data) => {
     popupWithAddForm.renderLoading(true);
     api.addCard(data.name, data.description, data.likes)
         .then(res => {
@@ -114,7 +115,8 @@ editFormValidator.enableValidation();
 
 const userInfo = new UserInfo({
     userName: '.profile__name',
-    userDescription: '.profile__description', userAvatar: '.profile__photo'});
+    userDescription: '.profile__description', userAvatar: '.profile__photo'
+});
 
 const popupWithEditForm = new PopupWithForm(popupEdit, (data) => {
     const {name, description} = data;

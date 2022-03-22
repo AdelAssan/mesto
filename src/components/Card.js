@@ -38,11 +38,11 @@ export default class Card {
     }
 
     _handlePicture = () => {
-    this._handleCardClick(this._data.name, this._data.link);
-}
+        this._handleCardClick(this._data.name, this._data.link);
+    }
 
     wasLiked() {
-        const myLike= this._likes.find(user => user._id === this._userId);
+        const myLike = this._likes.find(user => user._id === this._userId);
         return myLike
     }
 
@@ -52,7 +52,7 @@ export default class Card {
 
         if (this.wasLiked()) {
             this._addLike()
-        }else{
+        } else {
             this._removeLike()
         }
     }
@@ -76,7 +76,7 @@ export default class Card {
         this._element.querySelector('.element__trash').addEventListener('click', () => {
             this._handleCardDelete(this._id);
         });
-        this._element.querySelector('.element__like').addEventListener('click', () => {
+        this._like.addEventListener('click', () => {
             this._handleLikeClick(this._id);
         });
     }

@@ -9,7 +9,8 @@ export default class FormValidator {
 
     _hasInvalidInput = () => {
         return this._inputs.some((input) => {
-        return !input.validity.valid });
+            return !input.validity.valid
+        });
     }
 
     _toggleButtonError = () => {
@@ -58,7 +59,7 @@ export default class FormValidator {
         }
     }
 
-    _setInputListeners(){
+    _setInputListeners() {
         this._inputs.forEach((input) => {
             input.addEventListener('input', () => {
                 this._validateInput(input);
@@ -67,12 +68,12 @@ export default class FormValidator {
         });
     }
 
-    enableValidation () {
-            this._form.addEventListener('submit', (event) => {
-                event.preventDefault();
-            });
-            this._setInputListeners();
-        }
+    enableValidation() {
+        this._form.addEventListener('submit', (event) => {
+            event.preventDefault();
+        });
+        this._setInputListeners();
+    }
 
 }
 

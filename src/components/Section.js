@@ -6,11 +6,12 @@ export default class Section {
         this._cards = document.querySelector(cardSelector);
     }
 
-    renderItems() {
-        this._renderedItems.forEach(data => {
-            this._renderer(data);
-        });
-    }
+    renderItems(renderInf) {
+        this._renderedItems = renderInf;
+        this._renderedItems.forEach(item => {
+        this._renderer(item);
+       });
+}
 
     addItem(item) {
         this._cards.prepend(item);
